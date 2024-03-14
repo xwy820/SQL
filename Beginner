@@ -5,6 +5,7 @@ Create Table EmployeeSalary
 JobTitle varchar(50),
 Salary int)
 ```
+
 2. Insert Into--add the record to the table
 ```
 INSERT INTO EmployeeSalary VALUES 
@@ -12,20 +13,24 @@ INSERT INTO EmployeeSalary VALUES
  1003, 'HR', 50000
  1004, 'Accountant', 42000)
 ```
+
 3. Select Statement (*, Top, Distinct, Count, As, Max, Min, Avg)
 ```
 Select TOP 5 * From EmployeeSalary
 ```
+
 4. Where Statement (=, <>, <, >, And, Or, Like, Null, Not Null, In)
 (1) helps to limit the amount of data and specify what data you want to return
 (2) Like
     - % - The percent sign represents zero, one, or multiple characters
     - _ - The underscore represents a single character
     Note: MS Access uses an asterisk (*) instead of the percent sign (%), and a question mark (?) instead of the underscore (_).
+
 5. Group By
 (1) is used to aggregate data across one or more columns, allowing you to perform calculations like sum, average, count, etc., on each group of data 
 (2) vs Distinct: DISTINCT for removing duplicates across selected columns. It does not perform any aggregation.
 (3) vs Partition By: 
 - Group By will reduce the number of rows in our output.
 - Partition by statement dividing the result set into partitions and changes how the window function is calculated, so the partition by doesn't reduce the number of rows returned in our output
+
 6. Order By (ASC, DESC)
