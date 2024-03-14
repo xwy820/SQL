@@ -1,0 +1,48 @@
+1. Join
+- combine multiple tables into an output
+(1) Inner Join: It returns the common or overlapping rows from both tables.
+(2) Full Outer Join:  It returns all the rows from the left and right tables.
+(3) Left Join: It returns all the rows from the left table but only the matching rows from the right table.
+(4) Right Join: It returns all the rows from the right table but only the matching rows from the left table.
+(5) Self Join: is one type of join which is used to join the table itself. In practice, a self-join is mostly used to combine and compare rows from the same database table.
+(6) Cross Join: is used to generate a paired combination of each row of the first table with each row of the second table. 
+
+2. Union 
+(1) Union vs Join: 
+- Join is used to combine rows from two or more tables, based on a related column between them. 
+- Union is used to combine the result sets of two or more SELECT statements into a single result set.
+(2) Union vs Union All
+- Union: removes duplicate rows from the result set. Only returned unique rows after combing.
+- Union All: returns all rows from the result sets after combined SELECT statements, including duplicates.  
+
+3. Case Statement
+- is a conditional expression. It allows you to specify conditions and then allows you to specify what you want to return when that condition is met.
+- If multiple conditions meet the criteria, only the very first one is going to be returned.
+---
+CASE 
+  WHEN Age > 30 THEN 'Old'
+  WHEN Age BETWEEN 27 AND 30 THEN 'Young'
+  ELSE 'Baby'
+END
+---
+
+4. Having
+Having vs Where
+- Both WHERE and HAVING clauses are used to filter the results of a query. However, they are used in different ways, WHERE Clause is used with the SELECT statement and before the GROUP BY clause. HAVING Clause is used after the GROUP BY clause and filters on the result of aggregate functions. In other words, the Where clause filters rows before they are grouped or aggregated. Having clause filters rows after they have been grouped or aggregated.
+
+5. Updating & Deleting Data
+(1) Updating Data
+---
+UPDATE Customers <Table>
+SET ContactName = 'Alfred Schmidt', City= 'Frankfurt'
+WHERE CustomerID = 1;
+#注意使用where语句，否则全部记录都会更新
+---
+(2) Deleting Data
+---
+DELETE FROM Customers <Table>
+WHERE CustomerName='Alfreds Futterkiste';
+#注意使用where语句，否则会删除所有记录
+
+DELETE FROM Customers;  #删除全部记录
+---
