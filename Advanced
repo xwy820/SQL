@@ -1,0 +1,71 @@
+1. CTEs (Common Table Expression)
+- It's a temporary result set that you can reference within a SELECT, INSERT, UPDATE, or DELETE statement. It is particularly useful for simplifying complex queries by breaking them into more manageable pieces.
+- It is not stored persistently in the database; instead, it exists temporarily while executing the query that defines it. To use a CTE, the query defining the CTE must be executed first, as part of the same statement.
+
+2. Temp Table
+(1) CTEs vs Temp Table
+CTEs are not stored as objects in the database, we can use them one time, they might be run every time they're referenced in the main query.
+Temporary tables are physically stored on the database server (either in memory or on disk), which means they can reference the data multiple times.
+---
+# DROP TABLE IF EXISTS #Temp_Employee2
+CREATE TABLE #Temp_Employee2 (
+JobTitle varchar(50),
+EmployeePerJob int,
+AvgAge int,
+AvgSalary int)
+
+INSERT INTO #Temp_Employee2
+SELECT *
+FROM EmployeeSalary
+---
+
+3. String Functions (TRIM, LTRIM, RTRIM, Replace, Substring, Upper, Lower)
+---
+REPLACE(LastName, '-Fired', ' ')
+SUBSTRING(FirstName, 1, 3)  1-startposistion 3-num
+---
+
+4. Store Procedures
+- is a group of SQL statements that have been created and then stored in that database
+---
+# Create a Procedure
+CREATE PROCEDURE GetStudentInfo 
+    @StudentID INT
+AS
+BEGIN
+    SELECT StudentName, Grade
+    FROM Students
+    WHERE StudentID = @StudentID;
+END;
+# Execute the procedure
+EXEC GetStudentInfo @StudentID = 1;
+
+# Alter procedure
+ALTER PROCEDURE GetStudentInfo 
+    @StudentID INT
+AS
+BEGIN
+    SELECT StudentName, Grade, BirthDate
+    FROM Students
+    WHERE StudentID = @StudentID;
+END;
+
+5. Subqueries (in the Select, From, and Where Statement)
+- a subquery is used to return data that will be used in the main query or the outer query as a condition to specify the data that we want to retrieve
+-- Subquery in Select
+Select EmployeeID, Salary, (Select AVG(Salary) From EmployeeSalary)
+From EmployeeSalary
+-- Subquery in From
+Select a.EmployeeID, AllAvgSalary 
+From (Select EmployeeID, Salary, AVG(Salary) over () as AllAvgSalary 
+      From EmployeeSalary) a
+-- Subquery in Where
+Select EmployeeID, JobTitle, Salary
+From EmployeeSalary
+Where EmployeeID in (
+        Select *
+        From EmployeeDemographics)
+
+
+
+
